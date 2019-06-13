@@ -5,10 +5,12 @@ there are no abrupt changes in values of pixels. It takes the meadian
 value of all values present in the kernel and assigns to the central pixel. 
 2. Check it: why on the copy images, CV_8UC3 did not work and the image got shrunk. 
 3. First program where we have directly accesed pixel intensities. 
+4.rand() seeded with time. (reference for rand function)
 */
 
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -53,7 +55,7 @@ Mat saltAndPepper(Mat a)
 }
 
 int main(int argc, char const *argv[])
-{
+{	srand(time(NULL));
 	Mat iIn = imread("steinway2.jpg",0);
 	Mat badimg = saltAndPepper(iIn);
 	Mat corrected(iIn.rows,iIn.cols,CV_8UC1,Scalar(0));
